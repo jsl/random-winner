@@ -3,10 +3,18 @@
 # Written for a buy-nothing group - picks a number from a range based on the
 # number of people interested in an item.
 #
+# NB: This script really just wraps one Ruby function to choose a
+# number from a range (inclusively). I wrote it as a script mostly
+# because every time I had to use it, I forgot the syntax for an
+# inclusive versus exclusive range, and I wanted to make sure that
+# I don't leave people out at the beginning or end of the range.
+#
 # Install (Mac OS or Linux) by copying to a directory in your path like
 # /usr/local/bin, and then make executable by entering:
 #
 # `chmod 755 /usr/local/bin/random-winner`
+#
+# Or, you could clone this repo and symlink from somewhere in your path.
 #
 # Execute like:
 #
@@ -31,7 +39,8 @@ if ARGV[0]
   num_interested = parse_interested_number(ARGV[0])
   puts "There are #{num_interested} people interested."
   winner = rand(1..num_interested)
-  puts "**** The winner is number #{winner}. ****"
+  puts "**** The winner is number #{winner}. ****\n"
+  puts "Results generated with the random-winner script, https://github.com/jsl/random-winner."
 else
   puts USAGE
 end
