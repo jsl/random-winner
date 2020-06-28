@@ -1,0 +1,37 @@
+#!/usr/bin/env ruby
+
+# Written for a buy-nothing group - picks a number from a range based on the
+# number of people interested in an item.
+#
+# Install (Mac OS or Linux) by copying to a directory in your path like
+# /usr/local/bin, and then make executable by entering:
+#
+# `chmod 755 /usr/local/bin/random-winner`
+#
+# Execute like:
+#
+# random-winner 21
+#
+# Substitute 21 with the number of people interested in your item.
+#
+# Author: Justin Leitgeb
+# License: MIT (see LICENSE file)
+
+USAGE = "Call with number of parties interested in the item, e.g., random-winner 3."
+
+def parse_interested_number(interested_number)
+  Integer(ARGV[0])
+rescue ArgumentError
+  $stderr.puts "Error: First argument represents the number of parties interested and must be a number."
+  $stderr.puts USAGE
+  exit 1
+end
+
+if ARGV[0]
+  num_interested = parse_interested_number(ARGV[0])
+  puts "There are #{num_interested} people interested."
+  winner = rand(1..num_interested)
+  puts "**** The winner is number #{winner}. ****"
+else
+  puts USAGE
+end
